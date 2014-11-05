@@ -5,9 +5,21 @@
   <template>
     <style>
       /* CSS */
-    </style>
+      .paper-input-wrapper{
+        padding: 0.5em 1em;
+        background-color: #fff;
+      }
 
-    <paper-input multiline label="Enter multiple lines here"></paper-input>
+      paper-input{
+        width: 100%;
+      }
+
+
+
+    </style>
+    <div class="paper-input-wrapper">
+      <paper-input multiline label="Enter multiple lines here"></paper-input>
+    </div>
   </template>
   <script>
   Polymer('input-box', {
