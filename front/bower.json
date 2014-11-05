@@ -1,0 +1,26 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "homepage": "https://github.com/felixruponen/chatapp",
+  "authors": [
+    "S"
+  ],
+  "description": "Chat application using polymer and nodejs",
+  "main": "index.html",
+  "keywords": [
+    "nodejs",
+    "polymer"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.2"
+  }
+}
