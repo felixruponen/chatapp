@@ -10,7 +10,7 @@ app.get('/', function(req, res) {
 })
 
 io.on('connection', function(socket){
-
+	console.log("user connected");
 	socket.on('username', function(name){
 		io.emit('username', name);	
 	});
