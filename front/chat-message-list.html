@@ -1,0 +1,34 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="chat-socket.html">
+<link rel="import" href="chat-message-box.html">
+
+<polymer-element name="chat-message-list">
+  <template>
+    <style>
+    </style>
+  
+    <chat-socket id="chatSocket"></chat-socket>
+    <template repeat="{{message in messages}}">
+        <chat-message-box message="{{message}}"></chat-message-box>
+    </template>
+  
+  </template>
+  <script>
+  Polymer('chat-message-list', {
+      ready: function() {
+
+        var self = this;
+
+          this.messages = [];
+
+          var socket = this.$.chatSocket.socket;
+
+          socket.on('message', function(msg){
+            self.messages.unshift(msg);
+          });
+
+
+      },
+    });
+  </script>
+</polymer-element>

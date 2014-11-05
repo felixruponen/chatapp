@@ -7,6 +7,8 @@
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="input-box.html">
     <link rel="import" href="chat-socket.html">
+    <link rel="import" href="chat-message-list.html">
+
   </head>
   <body>
   	<style>
@@ -23,8 +25,13 @@
     left: 0;
     width:100%;
   }
-
+  paper-ripple {
+    color: #4285f4;
+  }
   	</style>
+
+    <chat-message-list></chat-message-list>
+
   	<chat-socket></chat-socket>
     <input-box></input-box>
     
