@@ -27,7 +27,7 @@
     </style>
     <chat-socket id="chatSocket"></chat-socket>
     <div class="paper-input-wrapper">
-      <paper-input multiline label="Enter multiple lines here" value="{{message}}"></paper-input>
+      <paper-input multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
       <paper-button raised on-click="{{sendMessage}}">raised button</paper-button>
       <div style="clear:both;"></div>
     </div>
@@ -35,10 +35,28 @@
   <script>
   Polymer('input-box', {
       ready: function() {
+
+          var self = this;
+
+          this.keyPressed = function(e, detail, target) {
+              var code = e.keyCode;
+              switch(code) {
+              case 13:
+                //e.preventDefault();
+                self.tabindex = 0;
+                console.log(target);
+                self.sendMessage();
+              }
+
+              console.log(e);
+
+          }
+
           this.sendMessage = function() {
-            var socket = this.$.chatSocket.socket;
-            socket.emit('message', this.message);
-            this.message = "";
+            console.log("awfawf");
+            var socket = self.$.chatSocket.socket;
+            socket.emit('message', self.message);
+            self.message = "";
           }
       },
     });
