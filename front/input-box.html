@@ -38,6 +38,7 @@
           this.sendMessage = function() {
             var socket = this.$.chatSocket.socket;
             socket.emit('message', this.message);
+            this.message = "";
           }
       },
     });
