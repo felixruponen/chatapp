@@ -12,13 +12,19 @@
         padding: 1em;
       }
 
+      paper-button {
+        background: #4285f4;
+        color: #fff;
+        float:right;
+      }
     </style>
     <chat-socket id="chatSocket"></chat-socket>
     <core-overlay id="dialog" backdrop="true">
-      <h2>Dialog</h2>
-      <input placeholder="say something..." autofocus>
-      <div>I agree with this wholeheartedly.</div>
-      <button core-overlay-toggle>OK</button>
+      <h2>Username</h2>
+      <paper-input label="Your Name" value="{{username}}">></paper-input>
+      <paper-button raised core-overlay-toggle 
+                    on-click="{{addUserName}}">
+                    OK</paper-button>
     </core-overlay>
   </template>
   <script>
@@ -27,12 +33,18 @@
     }
   Polymer('username-dialog', {
       ready: function() {
-        console.log("asd");
+        var self = this;
         this.tapHandler();
+        this.addUserName =function() {
+          var socket = this.$.chatSocket.socket;
+          console.log(socket);
+          console.log(self.username);
+          socket.emit('username', self.username);
+        }
       },
       tapHandler: function() {
         this.$.dialog.toggle();
-      }
+      },
     });
   </script>
 </polymer-element>
