@@ -23,7 +23,11 @@ io.on('connection', function(socket){
 	
 	socket.on('message', function(msg){
 		console.log(msg);
-    	io.emit('message', msg);
+		var messageData = {
+			user: socket.username,
+			message: msg
+		}
+    	io.emit('message', messageData);
 	});
 });
 
