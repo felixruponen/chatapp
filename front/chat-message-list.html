@@ -23,8 +23,8 @@
 
           var socket = this.$.chatSocket.socket;
 
-          socket.on('message', function(msg){
-            self.messages.unshift(msg);
+          socket.on('message', function(messageData){
+            self.messages.unshift(messageData);
           });
 
 

@@ -1,12 +1,13 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="chat-user-item.html">
+<link rel="import" href="chat-socket.html">
 
 <polymer-element attributes="username" name="chat-user-panel">
   
   <template>
     <style>
     
-      div{
+      div {
         height:100%;
         width:100%;
         background-color: #fff;
@@ -23,7 +24,7 @@
 
     </style>
     
-
+    <chat-socket id="chatSocket"></chat-socket>
     <div>
         <ul>
         <template repeat="{{user in users}}">  
@@ -37,7 +38,16 @@
   <script>
   Polymer('chat-user-panel', {
       ready: function() {
-          this.users = ["Jörgen", "Albin"];
+          var self = this;
+          this.users = [];
+          var socket = this.$.chatSocket.socket;
+          socket.emit('getUsers');
+          socket.on('allUsers', function(users) {
+            self.users = users;
+          });
+          socket.on('newUser', function(user) {
+            self.users.push(user);
+          })
       },
     });
   </script>
