@@ -9,8 +9,18 @@ app.get('/', function(req, res) {
 	res.send("hello world");
 })
 
-io.on('connection', function(){
-	 /* … */ 
+io.on('connection', function(socket){
+
+	socket.on('username', function(name){
+		io.emit('username', name);	
+	});
+	
+	socket.on('message', function(msg){
+    	io.emit('message', msg);
+	});
 });
+
+
+
 server.listen(3000);
 console.log("server is running");
