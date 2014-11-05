@@ -4,14 +4,31 @@
 <polymer-element name="chat-message-box" attributes="message">
   <template>
     <style>
-    p{
+    div{
       background-color: #fff;
+      width:25%;
+      margin:2em;
+     
+      box-shadow: 1px 1px 1px #ccc;
     }
+
+    div h5{
+      border-bottom:1px solid #999;
+      width:70%;
+    }
+
+    div p{
+      width:75%;
+      padding: 1em;
+      
+    }
+
     </style>
 
-    <p>
-      {{message}}
-    </p>
+    <div>
+      <h5>User says:</h5>
+      <p>{{message}}</p>
+    </div>
     
   </template>
   <script>
