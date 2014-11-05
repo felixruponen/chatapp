@@ -1,19 +1,25 @@
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
-	io = require('socket.io')(server);
+	io = require('socket.io')(server),
+	_ = require('lodash'),
+	sockets = [];
 
 app.use('/client', express.static('../front'));
-
-app.get('/', function(req, res) {
-	res.send("hello world");
-})
 
 io.on('connection', function(socket){
 	console.log("user connected");
 	socket.on('username', function(name){
-		io.emit('username', name);	
+		socket.username = name;
+		sockets.push(socket);
+		io.emit('newUser', name);	
 	});
+
+	socket.on('getUsers', function() {
+		socket.emit('allUsers', _.pluck(sockets, 'username'));
+		console.log("users");
+		console.log(_.pluck(sockets, 'username'));
+	})
 	
 	socket.on('message', function(msg){
 		console.log(msg);
