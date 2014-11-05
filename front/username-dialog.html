@@ -1,0 +1,38 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/core-overlay/core-overlay.html">
+<link rel="import" href="bower_components/core-transition/core-transition.html">
+<link rel="import" href="chat-socket.html">
+
+<polymer-element name="username-dialog">
+  <template>
+    <style>
+      core-overlay {
+        background: #fff;
+        padding: 1em;
+      }
+
+    </style>
+    <chat-socket id="chatSocket"></chat-socket>
+    <core-overlay id="dialog" backdrop="true">
+      <h2>Dialog</h2>
+      <input placeholder="say something..." autofocus>
+      <div>I agree with this wholeheartedly.</div>
+      <button core-overlay-toggle>OK</button>
+    </core-overlay>
+  </template>
+  <script>
+    var toggleDialog = function() {
+
+    }
+  Polymer('username-dialog', {
+      ready: function() {
+        console.log("asd");
+        this.tapHandler();
+      },
+      tapHandler: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  </script>
+</polymer-element>
