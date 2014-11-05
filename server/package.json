@@ -1,0 +1,28 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "Test chatapp sebastian and felix",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felixruponen/chatapp.git"
+  },
+  "keywords": [
+    "polymer",
+    "nodejs",
+    "node.js"
+  ],
+  "author": "Sebastian Jonasson and Felix Ruponen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felixruponen/chatapp/issues"
+  },
+  "homepage": "https://github.com/felixruponen/chatapp",
+  "dependencies": {
+    "express": "^4.10.1",
+    "socket.io": "^1.2.0"
+  }
+}
