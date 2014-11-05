@@ -13,7 +13,7 @@
       }
 
       ul{
-        margin: 0;
+        margin: 1em 0 0 0;
         list-style: none;
       }
 
@@ -25,12 +25,12 @@
     
 
     <div>
-      <ul>
+        <ul>
         <template repeat="{{user in users}}">  
 
               <li><chat-user-item username="{{user}}"></chat-user-item></li>
         </template>
-    </ul>
+      </ul>
     </div>
 
   </template>

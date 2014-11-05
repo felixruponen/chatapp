@@ -1,4 +1,5 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
 
 <polymer-element attributes="username" name="chat-user-item">
   
@@ -11,10 +12,7 @@
 
     </style>
   
-    <div>
-      <p>{{username}}</p>
-    </div>
-
+    <paper-item icon="android" label="{{username}}"></paper-item>
 
   </template>
   <script>
