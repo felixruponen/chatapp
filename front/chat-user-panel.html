@@ -1,0 +1,44 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="chat-user-item.html">
+
+<polymer-element attributes="username" name="chat-user-panel">
+  
+  <template>
+    <style>
+    
+      div{
+        height:100%;
+        width:100%;
+        background-color: #fff;
+      }
+
+      ul{
+        margin: 0;
+        list-style: none;
+      }
+
+      li{
+        background-color: #fff;
+      }
+
+    </style>
+    
+
+    <div>
+      <ul>
+        <template repeat="{{user in users}}">  
+
+              <li><chat-user-item username="{{user}}"></chat-user-item></li>
+        </template>
+    </ul>
+    </div>
+
+  </template>
+  <script>
+  Polymer('chat-user-panel', {
+      ready: function() {
+          this.users = ["Jörgen", "Albin"];
+      },
+    });
+  </script>
+</polymer-element>

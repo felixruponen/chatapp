@@ -8,6 +8,7 @@
     <link rel="import" href="input-box.html">
     <link rel="import" href="chat-socket.html">
     <link rel="import" href="chat-message-list.html">
+    <link rel="import" href="chat-user-panel.html">
 
   </head>
   <body>
@@ -17,18 +18,31 @@
 	    margin: 0;
 	    background-color: #E5E5E5;
 	    font-family: 'RobotoDraft', sans-serif;
-	}
+  	}
 
-  input-box{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width:100%;
-  }
-  paper-ripple {
-    color: #4285f4;
-  }
+    input-box{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width:100%;
+    }
+
+    chat-user-panel{
+      float: left;
+      width:25%;
+      height:100%;
+      border-right: 1px solid #999;
+      margin-top: -15px;
+    }
+
+    chat-message-list{
+      float:left;
+      width:70%;
+    }
+
   	</style>
+
+    <chat-user-panel></chat-user-panel>
 
     <chat-message-list></chat-message-list>
 
