@@ -4,12 +4,20 @@
     <!-- 1. Load platform.js for polyfill support. -->
     <script src="bower_components/platform/platform.js"></script>
 
-    <link rel="import" href="components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="input-box.html">
   </head>
   <body>
+  	<style>
+  	html, body {
+	    height: 100%;
+	    margin: 0;
+	    background-color: #E5E5E5;
+	    font-family: 'RobotoDraft', sans-serif;
+	}
+  	</style>
 
-    <paper-input label="Your Name"></paper-input>
-    <paper-input multiline label="Enter multiple lines here"></paper-input>
+    <input-box></input-box>
     
     <script>
    
