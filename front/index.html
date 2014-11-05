@@ -8,6 +8,9 @@
     <link rel="import" href="input-box.html">
     <link rel="import" href="chat-socket.html">
     <link rel="import" href="chat-message-list.html">
+    <link rel="import" href="chat-message-list.html">
+    <link rel="import" href="username-dialog.html">
+
 
   </head>
   <body>
@@ -30,13 +33,16 @@
   }
   	</style>
 
-    <chat-message-list></chat-message-list>
-
   	<chat-socket></chat-socket>
+    <chat-message-list></chat-message-list>
+    <username-dialog></username-dialog>
     <input-box></input-box>
     
     <script>
-   
+   	Polymer('', {
+      ready: function() {
+      }
+    });
     </script>
   </body>
 </html>
