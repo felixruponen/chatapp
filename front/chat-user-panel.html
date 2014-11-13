@@ -44,6 +44,7 @@
           socket.emit('getUsers');
           socket.on('allUsers', function(users) {
             self.users = users;
+            console.log(users)
           });
           socket.on('newUser', function(user) {
             console.log(user);
