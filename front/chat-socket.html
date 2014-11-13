@@ -8,21 +8,33 @@
          var self = this;
 
          this.socket = socket;
-         this.messages = []
+         this.messages = [];
+
          this.messages['all'] = [];
          this.displayMessages = this.messages['all'];
+         this.talkingTo = 'all';
 
          socket.on('message', function(messageData){
-            
             self.addMessage(messageData);
+            console.log(self.displayMessages);
           });
 
          self.setTalkingTo = function(userid){
+
+            self.talkingTo = userid;
+
             if(!self.messages[userid]){
               self.messages[userid] = [];
             }
 
             self.displayMessages = self.messages[userid];
+
+            console.log(self.displayMessages);
+         }
+
+         self.getMessages = function() {
+            console.log(self.displayMessages);
+           return self.displayMessages;
          }
 
          self.addMessage = function(message) {
@@ -32,11 +44,11 @@
          self.sendMessage = function(message) {
               
               var  messageData = {
-                  to: socket.talkingTo,
+                  to: self.talkingTo,
                   message: message
               }
 
-              self.displayMessages.push(messageData)
+              self.displayMessages.unshift(message);
               self.socket.emit('message', messageData);
          }         
 
