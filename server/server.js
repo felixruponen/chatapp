@@ -23,7 +23,7 @@ io.on('connection', function(socket){
 	socket.on('getUsers', function() {
 		socket.emit('allUsers', _.pluck(sockets, 'username id'));
 		console.log("users");
-		console.log(_.pluck(sockets, 'username'));
+		console.log(_.pluck(sockets, 'username id'));
 	})
 	
 	socket.on('message', function(msg) {
@@ -42,7 +42,7 @@ io.on('connection', function(socket){
 				console.log(s.id);
 				console.log(msg.to);
 				if (s.id == msg.to) {
-					s.emit(messageData);
+					s.emit('message', messageData);
 				}
 			});
 			socket.emit('message', messageData);
