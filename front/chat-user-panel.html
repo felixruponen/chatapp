@@ -29,7 +29,7 @@
         <ul>
         <template repeat="{{user in users}}">  
 
-              <li><chat-user-item username="{{user}}"></chat-user-item></li>
+              <li><chat-user-item userdata="{{user}}"></chat-user-item></li>
         </template>
       </ul>
     </div>
@@ -46,6 +46,7 @@
             self.users = users;
           });
           socket.on('newUser', function(user) {
+            console.log(user);
             self.users.push(user);
           })
       },

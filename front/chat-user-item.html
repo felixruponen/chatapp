@@ -1,7 +1,7 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/paper-item/paper-item.html">
 
-<polymer-element attributes="username" name="chat-user-item">
+<polymer-element attributes="userdata" name="chat-user-item">
   
   <template>
     <style>
@@ -11,14 +11,22 @@
       }    
 
     </style>
-  
-    <paper-item icon="android" label="{{username}}"></paper-item>
+    <chat-socket id="chatSocket"></chat-socket>
+    <paper-item icon="android" 
+                label="{{userdata.username}}"
+                on-click="{{updateTalkingTo}}">
+    </paper-item>
 
   </template>
   <script>
   Polymer('chat-user-item', {
       ready: function() {
-
+        var self = this;
+        this.updateTalkingTo = function() {
+          var socket = this.$.chatSocket.socket;
+          socket.talkingTo = self.userdata.id;
+          console.log(this.$.chatSocket.socket.talkingTo);
+        }
 
       },
     });

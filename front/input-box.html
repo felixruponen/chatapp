@@ -53,6 +53,16 @@
           }
 
           this.sendMessage = function() {
+<<<<<<< HEAD
+            console.log("awfawf");
+            var socket = self.$.chatSocket.socket,
+                messageData = {
+                  to: socket.talkingTo,
+                  message: self.message
+                }
+            socket.emit('message', messageData);
+            self.message = "";
+=======
             if(self.message) {
               console.log("awfawf");
               var socket = self.$.chatSocket.socket;
@@ -62,6 +72,7 @@
               console.log(self.$.chatinput.$.input)
               self.$.chatinput.$.input.focus()
             }
+>>>>>>> e4f097ad72fca8e23f248134f04a1a800df7e1c4
           }
       },
     });
