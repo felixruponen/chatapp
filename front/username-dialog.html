@@ -21,30 +21,29 @@
     <chat-socket id="chatSocket"></chat-socket>
     <core-overlay id="dialog" backdrop="true">
       <h2>Username</h2>
-      <paper-input label="Your Name" value="{{username}}">></paper-input>
-      <paper-button raised core-overlay-toggle 
+      <paper-input name="inputbox" label="Your Name" value="{{username}}"></paper-input>
+      <paper-button raised core-overlay-close 
                     on-click="{{addUserName}}">
                     OK</paper-button>
     </core-overlay>
   </template>
   <script>
-    var toggleDialog = function() {
 
-    }
   Polymer('username-dialog', {
       ready: function() {
         var self = this;
-        this.tapHandler();
+        this.$.dialog.open();
         this.addUserName =function() {
-          var socket = this.$.chatSocket.socket;
-          console.log(socket);
-          console.log(self.username);
-          socket.emit('username', self.username);
+          if(self.username) {
+            var socket = this.$.chatSocket.socket;
+            console.log(socket);
+            console.log(self.username);
+            socket.emit('username', self.username);
+            
+            this.$.dialog.close();
+          }
         }
-      },
-      tapHandler: function() {
-        this.$.dialog.toggle();
-      },
+      }
     });
   </script>
 </polymer-element>

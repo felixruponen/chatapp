@@ -28,8 +28,8 @@
     <chat-socket id="chatSocket"></chat-socket>
     <div class="paper-input-wrapper">
 
-      <paper-input multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
-      <paper-button raised on-click="{{sendMessage}}">Send</paper-button>
+      <paper-input tabindex="1" multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
+      <paper-button tabindex="2" raised on-click="{{sendMessage}}">Send</paper-button>
       <div style="clear:both;"></div>
     </div>
   </template>
@@ -54,10 +54,13 @@
           }
 
           this.sendMessage = function() {
-            console.log("awfawf");
-            var socket = self.$.chatSocket.socket;
-            socket.emit('message', self.message);
-            self.message = "";
+            if(self.message) {
+              console.log("awfawf");
+              var socket = self.$.chatSocket.socket;
+              socket.emit('message', self.message);
+              self.message = "";
+              self.tabindex = 1;
+            }
           }
       },
     });
