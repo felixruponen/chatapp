@@ -17,7 +17,9 @@
   Polymer('chat-message-list', {
       ready: function() {
         var self = this;
-          this.messages = self.$.chatSocket.displayMessages;
+          this.messages = self.$.chatSocket.getMessages();
+
+          setInterval(function() { self.messages = self.$.chatSocket.getMessages();}, 100);
       },
     });
   </script>

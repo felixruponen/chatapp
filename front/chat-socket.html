@@ -16,6 +16,7 @@
 
          socket.on('message', function(messageData){
             self.addMessage(messageData);
+            console.log(self.displayMessages);
           });
 
          self.setTalkingTo = function(userid){
@@ -27,6 +28,13 @@
             }
 
             self.displayMessages = self.messages[userid];
+
+            console.log(self.displayMessages);
+         }
+
+         self.getMessages = function() {
+            console.log(self.displayMessages);
+           return self.displayMessages;
          }
 
          self.addMessage = function(message) {
@@ -40,7 +48,7 @@
                   message: message
               }
 
-              self.displayMessages.push(messageData)
+              self.displayMessages.unshift(message);
               self.socket.emit('message', messageData);
          }         
 
