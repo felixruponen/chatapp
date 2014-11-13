@@ -21,10 +21,9 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('getUsers', function() {
-		socket.emit('allUsers', _.pluck(sockets, 'username id'));
+		socket.emit('allUsers', _.map(sockets, function(socket) { return { username: socket.username, id: socket.id}; }));
 		console.log("users");
-		console.log(_.pluck(sockets, 'username id'));
-	})
+	});
 	
 	socket.on('message', function(msg) {
 		var messageData = {
