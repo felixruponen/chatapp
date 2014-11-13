@@ -55,8 +55,12 @@
 
           this.sendMessage = function() {
             console.log("awfawf");
-            var socket = self.$.chatSocket.socket;
-            socket.emit('message', self.message);
+            var socket = self.$.chatSocket.socket,
+                messageData = {
+                  to: socket.talkingTo,
+                  message: self.message
+                }
+            socket.emit('message', messageData);
             self.message = "";
           }
       },

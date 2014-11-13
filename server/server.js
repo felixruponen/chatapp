@@ -13,23 +13,42 @@ io.on('connection', function(socket){
 	socket.on('username', function(name){
 		socket.username = name;
 		sockets.push(socket);
-		io.emit('newUser', name);	
+		io.emit('newUser', {
+			username: socket.username,
+			id: socket.id
+		});	
 		console.log(socket.id);
 	});
 
 	socket.on('getUsers', function() {
-		socket.emit('allUsers', _.pluck(sockets, 'username'));
+		socket.emit('allUsers', _.pluck(sockets, 'username id'));
 		console.log("users");
 		console.log(_.pluck(sockets, 'username'));
 	})
 	
-	socket.on('message', function(msg){
-		console.log(msg);
+	socket.on('message', function(msg) {
 		var messageData = {
 			user: socket.username,
-			message: msg
+			message: msg.message,
+			to: msg.to
+		};
+
+		if(msg.to == 'all') {
+			messageData.visibility = 'public';
+			io.emit('message', messageData);
+		} else {
+			messageData.visibility = 'private';
+			_.each(sockets, function(s) {
+				console.log(s.id);
+				console.log(msg.to);
+				if (s.id == msg.to) {
+					s.emit(messageData);
+				}
+			});
+			socket.emit('message', messageData);
 		}
-    	io.emit('message', messageData);
+		console.log(msg);
+	
 	});
 
 	socket.on('disconnect', function() {
