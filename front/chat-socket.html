@@ -8,16 +8,20 @@
          var self = this;
 
          this.socket = socket;
-         this.messages = []
+         this.messages = [];
+
          this.messages['all'] = [];
          this.displayMessages = this.messages['all'];
+         this.talkingTo = 'all';
 
          socket.on('message', function(messageData){
-            
             self.addMessage(messageData);
           });
 
          self.setTalkingTo = function(userid){
+
+            self.talkingTo = userid;
+
             if(!self.messages[userid]){
               self.messages[userid] = [];
             }
@@ -32,7 +36,7 @@
          self.sendMessage = function(message) {
               
               var  messageData = {
-                  to: socket.talkingTo,
+                  to: self.talkingTo,
                   message: message
               }
 
