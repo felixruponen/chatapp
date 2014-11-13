@@ -40,7 +40,7 @@
             console.log(self.username);
             socket.emit('username', self.username);
             
-            this.$.dialog.close();
+            this.$.dialog.toggle();
           }
         }
       }

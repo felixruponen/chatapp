@@ -27,8 +27,7 @@
     </style>
     <chat-socket id="chatSocket"></chat-socket>
     <div class="paper-input-wrapper">
-
-      <paper-input tabindex="1" multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
+      <paper-input tabindex="1" id="chatinput" multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
       <paper-button tabindex="2" raised on-click="{{sendMessage}}">Send</paper-button>
       <div style="clear:both;"></div>
     </div>
@@ -60,6 +59,8 @@
               socket.emit('message', self.message);
               self.message = "";
               self.tabindex = 1;
+              console.log(self.$.chatinput.$.input)
+              self.$.chatinput.$.input.focus()
             }
           }
       },

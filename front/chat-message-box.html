@@ -4,7 +4,7 @@
 <polymer-element name="chat-message-box" attributes="message">
   <template>
     <style>
-    div{
+    .chatbox{
       background-color: #fff;
       width:25%;
       margin:2em;
@@ -12,22 +12,24 @@
       box-shadow: 1px 1px 1px #ccc;
     }
 
-    div h5{
+    .chatbox h5{
       border-bottom:1px solid #999;
       width:70%;
     }
 
-    div p{
+    .chatbox p{
       width:75%;
       padding: 1em;
-      
+      overflow: auto;
+      height: 100%;
     }
 
     </style>
 
-    <div>
+    <div class="chatbox">
       <h5>{{message.user}} says:</h5>
       <p>{{message.message}}</p>
+      <div style="clear:both;"></div>
     </div>
     
   </template>
