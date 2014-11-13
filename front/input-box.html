@@ -27,7 +27,7 @@
     </style>
     <chat-socket id="chatSocket"></chat-socket>
     <div class="paper-input-wrapper">
-      <paper-input tabindex="1" id="chatinput" multiline on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
+      <paper-input tabindex="1" id="chatinput" on-keypress="{{keyPressed}}" label="Enter multiple lines here" value="{{message}}"></paper-input>
       <paper-button tabindex="2" raised on-click="{{sendMessage}}">Send</paper-button>
       <div style="clear:both;"></div>
     </div>
@@ -42,10 +42,13 @@
               var code = e.keyCode;
               switch(code) {
               case 13:
-                //e.preventDefault();
+                self.$.chatinput.focus();
                 self.tabindex = 0;
                 console.log(target);
+                self.message = self.$.chatinput.value;
                 self.sendMessage();
+                
+                e.preventDefault();
               }
 
               console.log(e);
@@ -56,12 +59,7 @@
 
             if(self.message) {
               console.log("awfawf");
-              var socket = self.$.chatSocket.socket,
-                  messageData = {
-                    to: socket.talkingTo,
-                    message: self.message
-                  }
-              socket.emit('message', messageData);
+              self.$.chatSocket.sendMessage(self.message);
               self.message = "";
               self.$.chatinput.$.input.focus()
             }

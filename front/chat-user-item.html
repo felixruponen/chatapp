@@ -23,9 +23,7 @@
       ready: function() {
         var self = this;
         this.updateTalkingTo = function() {
-          var socket = this.$.chatSocket.socket;
-          socket.talkingTo = self.userdata.id;
-          console.log(this.$.chatSocket.socket.talkingTo);
+          self.$.chatSocket.setTalkingTo(self.userdata.id);
         }
 
       },

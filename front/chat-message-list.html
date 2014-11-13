@@ -17,17 +17,7 @@
   Polymer('chat-message-list', {
       ready: function() {
         var self = this;
-          this.messages = [];
-
-          var socket = this.$.chatSocket.socket;
-          
-          socket.on('message', function(messageData){
-            self.messages.unshift(messageData);
-          });
-
-          socket.on('messageList', function(messages){
-            self.messages = message;
-          });
+          this.messages = self.$.chatSocket.displayMessages;
       },
     });
   </script>

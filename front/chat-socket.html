@@ -5,8 +5,41 @@
     var socket = io("localhost:3000");
     Polymer({
        ready: function() {
+         var self = this;
+
          this.socket = socket;
-         this.socket.talkingTo = 'all';
+         this.messages = []
+         this.messages['all'] = [];
+         this.displayMessages = this.messages['all'];
+
+         socket.on('message', function(messageData){
+            
+            self.addMessage(messageData);
+          });
+
+         self.setTalkingTo = function(userid){
+            if(!self.messages[userid]){
+              self.messages[userid] = [];
+            }
+
+            self.displayMessages = self.messages[userid];
+         }
+
+         self.addMessage = function(message) {
+            self.displayMessages.unshift(message);
+         }
+
+         self.sendMessage = function(message) {
+              
+              var  messageData = {
+                  to: socket.talkingTo,
+                  message: message
+              }
+
+              self.displayMessages.push(messageData)
+              self.socket.emit('message', messageData);
+         }         
+
        }
     });
   })();
