@@ -2,7 +2,7 @@
 <polymer-element name="chat-socket">
   <script>
   (function() {
-    var socket = io("192.168.1.132:3000");
+    var socket = io("localhost:3000");
     Polymer({
        ready: function() {
          this.socket = socket;
